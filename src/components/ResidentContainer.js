@@ -36,21 +36,21 @@ const ResidentContainer = (prop) => {
 //         residentLimited.push(resident)
 //     }
 // }
-// const residentsList = residentLimited.map((item) => {
-//     key: {item.id}
-//     name: {item.name}
-//     image: {item.image}
-//     status: item.status ,
-//     origin: item.origin.name ,
-//     cameos: item.episode.length
-// })
+const residentsList = resident.map((item) => <ResidentInfo
+    key= {item.id}
+    name= {item.name}
+    image= {item.image}
+    status= {item.status} 
+    origin= {item.origin.name} 
+    cameos= {item.episode.length}
+/>)
 if(resident) {
     console.log(resident)
 }
 
 return (
 <div className="residentContainer">
-<ResidentInfo list={resident}/>
+{residentsList}
 </div>)
 }
 
