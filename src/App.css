@@ -1,38 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap');
+
 .App {
-  text-align: center;
+  /* top: 50px; */
+  display: flex;
+  width: 100%;
+
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-image: url(https://i.pinimg.com/originals/d4/0c/ea/d40cea0d3893378e7a96e441452dfcaf.jpg);
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-attachment: fixed ;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header {
+  color: rgb(18, 177, 18);
+  font-size: 30px;
+  font-weight: 500;
+  /* width: 100%; */
+  background-color: black;
+  padding: 15px;
+  /* position: fixed; */
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.finder {
+  padding: 15px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+input {
+  height: 30px;
+  width: 30vw;
+  font-family: 'Orbitron', sans-serif;
+}
+button {
+  color: green;
+  background-color: black;
+  font-family: 'Orbitron', sans-serif;
+}
+.locationContainer {
+  /* width: 110%; */
+  padding: 15px;
+  margin: 20px;
+  margin-bottom: 40vh;
+  background-color: rgb(5, 17, 6);
+  color: rgb(219, 215, 215);
+  display: flex;
+  /* flex-direction: row; */
+ /* flex-direction: ; */
+}
+
+.locationContainer h3 {
+  width: 25%;
+  font-weight: 400;
+}
+
+.residentContainer {
+  display: flex;
+  /* background-color: rgb(5, 17, 6); */
+  width: 100%;
+  height: auto;
+  color: rgb(219, 215, 215);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* position: ; */
+
+}
+
+.residentInfo {
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+  margin: 15px;
+  background-color: black;
+  border: solid green;
 }
 
-.App-link {
-  color: #61dafb;
+.name {
+  color: yellow;
+  font-size: 30px;
+}
+.alive {
+  color: green;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dead {
+  color: red;
 }

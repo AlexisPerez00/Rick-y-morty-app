@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import SearchBox from './components/SearchBox';
+import  LocationContainer  from './components/LocationContainer';
 import './App.css';
+import { useState} from 'react';
 
 function App() {
+  
+  const [query, setQuery] = useState('')
+  // const [data, setData] = useState([])
+
+  const handleSearch = (query) => {
+
+    setQuery(query)
+    console.log(query)
+  }
+
+  // useEffect(() => {
+  //   if(location) {
+  //     GetData(location)
+  //    const func = async() => {
+  //    const res = await;
+  //    console.log(res)
+  //    setData(res.results)
+  //    }
+  //    func()
+  //   }
+  //   },[location])
+
+    // const locationList = data.map((item) => (
+      
+    //   <option key={item.id}>{item.name}</option>
+    // ))
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header> Rick and Morty - Location Finder</header>
+      <SearchBox onSearch={handleSearch} />
+      <LocationContainer fetchLocation={query}/>
+      
     </div>
   );
 }
