@@ -1,7 +1,5 @@
 
 const ResidentInfo = ({image, name, status, origin, cameos}) => {
-
-
     return (
 
                 <div className="residentInfo">

@@ -4,7 +4,6 @@ import ResidentContainer from "./ResidentContainer";
 
      const LocationContainer =  (props) => {
         const [search, setSearch] = useState('');
-        // const randomIndex = Math.floor(search.length * Math.random())
         const [location, setLocation] = useState([])
 
 
@@ -14,17 +13,15 @@ import ResidentContainer from "./ResidentContainer";
                 const link = `https://rickandmortyapi.com/api/location`
                 const res = await fetch(link).then(res => res.json())
                 setSearch(res.results)
-                console.log(res.results)
 }
             getData()
-        },[])
+        })
 
         useEffect(() => {
             if(search) {
                 search.forEach((item) => {
                     if(item.name === props.fetchLocation) {
                         setLocation(item)
-                    console.log(item)
                     }
                      
                 })
