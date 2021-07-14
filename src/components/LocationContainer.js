@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import  LocationInfo  from "./LocationInfo";
-import ResidentContainer from "./ResidentContainer";
 
      const LocationContainer =  (props) => {
         const [search, setSearch] = useState('');
@@ -13,15 +12,19 @@ import ResidentContainer from "./ResidentContainer";
                 const link = `https://rickandmortyapi.com/api/location`
                 const res = await fetch(link).then(res => res.json())
                 setSearch(res.results)
-}
-            getData()
-        })
+            }
+            if(props.fetchLocation) {
+               getData()
+            }
+            
+        },[props.fetchLocation])
 
         useEffect(() => {
             if(search) {
                 search.forEach((item) => {
                     if(item.name === props.fetchLocation) {
                         setLocation(item)
+                        props.searchLocation(item)
                     }
                      
                 })
@@ -33,7 +36,6 @@ import ResidentContainer from "./ResidentContainer";
         return (
             <div className="bodyInfo">
                 <LocationInfo Location={location}/>
-                <ResidentContainer Location={location}/>
             </div>
         )
 
