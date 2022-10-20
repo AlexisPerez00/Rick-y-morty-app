@@ -1,28 +1,40 @@
-import SearchBox from './components/SearchBox';
+import Navbar from './components/navigation/Navbar';
 import  LocationContainer  from './components/LocationContainer';
 import ResidentContainer from './components/ResidentContainer';
 import './App.css';
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 
 function App() {
 
   const [query, setQuery] = useState('')
-  const [location,setLocation] = useState([])
+  // const [location,setLocation] = useState([])
+
+  const [data, setData] = useState('');
+
 
   const handleSearch = (query) => {
     setQuery(query)
   }
 
-  const handleLocation = (item) => {
-    setLocation(item)
-  }
+  useEffect(() => {
+      const getData = async() => {
+          const link = `https://rickandmortyapi.com/api/location?name=${query}`
+          const res = await fetch(link).then(res => res.json())
+          setData(res.results[0])
+      }
+      if(query) {
+          getData()
+      }
+      
+  },[query])
+
 
   return (
     <div className="App">
       <header> Rick and Morty - Location Finder</header>
-      <SearchBox onSearch={handleSearch} />
-      <LocationContainer fetchLocation={query} searchLocation={handleLocation}/>
-      <ResidentContainer Location={location}/>
+      <Navbar onSearch={handleSearch} />
+      <LocationContainer locationData={data}/>
+      <ResidentContainer locationData={data}/>
 
     </div>
   );

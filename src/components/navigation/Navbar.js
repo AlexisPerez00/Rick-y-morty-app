@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const SearchBox = ({onSearch}) => {
+const Navbar = ({onSearch}) => {
     const [value, setValue] = useState('')
   
   return (
@@ -17,5 +17,5 @@ const SearchBox = ({onSearch}) => {
   )
   }
   
-  export default SearchBox
+  export default Navbar
   

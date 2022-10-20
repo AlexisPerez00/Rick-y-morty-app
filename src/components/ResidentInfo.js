@@ -3,7 +3,6 @@ const ResidentInfo = ({image, name, status, origin, cameos}) => {
     return (
 
                 <div className="residentInfo">
-
                     <div>
                         <img src={image} alt="character"></img>
                     </div>

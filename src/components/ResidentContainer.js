@@ -1,31 +1,60 @@
 import { useEffect, useState } from "react"
-import ResidentInfo from "./ResidentInfo"
+import ResidentInfo from "../components/ResidentInfo"
 
 const ResidentContainer = (prop) => {
-    const [resident, setResident] = useState([])
+    const residents = prop.locationData.residents
+    const [residentsData, setResidentsData] = useState([])
+    const [randomResidents, setRandomResidents] = useState([])
 
 
     useEffect(() => {        
-    const residents = prop.Location["residents"]
-        const getData = () => {
-            const info = []
-            residents.forEach(async(link) => {
-                const res = await fetch(link).then(res => res.json())
-                info.push(res)
-            })
-            if(info.length === residents.length) {
-                setResident(info)
+        const info = []
 
-            }
+        const getData = () => {
+            
+            residents.forEach(async(url) => {
+            const res = await fetch(url).then(res => res.json())
+                info.push(res)
+
+            })
         }
        if(residents) {
            getData()
+           setResidentsData(info)
         }
 
-    },[prop.Location])
+    },[residents])
 
+    console.log(residentsData)
+    const residentsList = residentsData.map((item) => 
+        <ResidentInfo
+            key= {item.id}
+            name= {item.name}
+            image= {item.image}
+            status= {item.status} 
+            origin= {item.origin.name} 
+            cameos= {item.episode.length}
+        />
+    )
+    
 
-    const residentsList = resident.map((item) => 
+    
+    useEffect(() => {
+        const getRandomData = async() => {
+            let randomNum = Math.floor((Math.random()*10)+1)
+            const res = await fetch(`https://rickandmortyapi.com/api/character?page=${randomNum}`).then(res => res.json())
+            const result = res.results
+            const randomResidents = []
+            for (let i = 0; i <= 10; i++) {
+                randomResidents.push(result[i])
+            }
+            setRandomResidents(randomResidents)
+        }
+            getRandomData()
+    
+    },[])
+
+    const randomResidentsList = randomResidents.map((item) =>
     <ResidentInfo
         key= {item.id}
         name= {item.name}
@@ -36,9 +65,11 @@ const ResidentContainer = (prop) => {
     />)
 
     return (
-    <div className="residentContainer">
-    {residentsList}
-    </div>
+        <div className="residentContainer">
+            {residentsData.length > 1 ? residentsList
+            : randomResidentsList}
+   
+        </div> 
      )
 }
 
