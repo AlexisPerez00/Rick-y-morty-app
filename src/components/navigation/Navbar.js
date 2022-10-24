@@ -5,12 +5,12 @@ const Navbar = ({onSearch}) => {
   
   return (
   <div className="finder">
-      <input value={value} placeholder="Select a location" onChange={e => {
+      <input value={value} placeholder="Write a location" onChange={e => {
         setValue(e.target.value)
       }}>
       </input>
   
-    { <button onClick={() => {
+    { <button type="submit" onClick={() => {
       onSearch(value)
     }}>Search</button> }
   </div>

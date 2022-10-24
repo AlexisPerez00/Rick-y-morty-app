@@ -7,9 +7,8 @@ import { useState, useEffect} from 'react';
 function App() {
 
   const [query, setQuery] = useState('')
-  // const [location,setLocation] = useState([])
-
-  const [data, setData] = useState('');
+  const [residents, setResidents] = useState([])
+  const [location, setLocation] = useState('');
 
 
   const handleSearch = (query) => {
@@ -20,7 +19,8 @@ function App() {
       const getData = async() => {
           const link = `https://rickandmortyapi.com/api/location?name=${query}`
           const res = await fetch(link).then(res => res.json())
-          setData(res.results[0])
+          setLocation(res.results[0])
+          setResidents(res.results[0].residents)
       }
       if(query) {
           getData()
@@ -33,8 +33,8 @@ function App() {
     <div className="App">
       <header> Rick and Morty - Location Finder</header>
       <Navbar onSearch={handleSearch} />
-      <LocationContainer locationData={data}/>
-      <ResidentContainer locationData={data}/>
+      <LocationContainer location={location}/>
+      <ResidentContainer residents={residents}/>
 
     </div>
   );
